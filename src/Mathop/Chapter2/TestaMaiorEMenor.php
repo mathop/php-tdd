@@ -48,5 +48,3 @@
             $this->assertEquals('Geladeira', $algoritmo->getMaior()->getNome());
         }
     }
-
-    new TestaMaiorEMenor();
