@@ -40,4 +40,11 @@
             $numero = $romano->converte('IX');
             $this->assertEquals(9, $numero);
         }
+
+        public function testDeveEntenderNumerosComplexosComoXXIV()
+        {
+            $romano = new ConversorDeNumeroRomano();
+            $numero = $romano->converte('XXIV');
+            $this->assertEquals(24, $numero);
+        }
     }
