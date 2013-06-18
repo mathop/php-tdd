@@ -29,7 +29,7 @@
                     $multiplicador = -1;
                 }
 
-                $acumulador += $this->tabela[$numeroEmRomano[$i]] * $multiplicador;
+                $acumulador += $atual * $multiplicador;
                 $ultimoVizinhoDaDireita = $atual;
             }
 
