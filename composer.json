@@ -1,0 +1,10 @@
+{
+    "name": "mathop/php-tdd",
+    "description": "Estudando TDD em PHP com o livro \"Test-Driven Development: Teste e Design no Mundo Real\" do Maurício Aniche :-)",
+    "autoload": {
+        "psr-0": { "Mathop": "src/" }
+    },
+    "require": {
+        "phpunit/phpunit": "3.7.*"
+    }
+}

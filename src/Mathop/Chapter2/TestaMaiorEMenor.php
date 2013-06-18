@@ -4,7 +4,7 @@
     use Mathop\Chapter2\Produto;
     use Mathop\Chapter2\MaiorEMenor;
 
-    require_once('../autoload.php');
+    require_once('../../../vendor/autoload.php');
 
     class TestaMaiorEMenor
     {
