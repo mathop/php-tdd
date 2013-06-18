@@ -19,4 +19,11 @@
             $numero = $romano->converte('V');
             $this->assertEquals(5, $numero);
         }
+
+        public function testDeveEntenderDoisSimbolosComoII()
+        {
+            $romano = new ConversorDeNumeroRomano();
+            $numero = $romano->converte('II');
+            $this->assertEquals(2, $numero);
+        }
     }

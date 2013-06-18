@@ -17,6 +17,12 @@
 
         public function converte($numeroEmRomano)
         {
-            return $this->tabela[$numeroEmRomano];
+            $acumulador = 0;
+
+            for ($i = 0;  $i < strlen($numeroEmRomano); $i++) {
+                $acumulador += $this->tabela[$numeroEmRomano[$i]];
+            }
+
+            return $acumulador;
         }
     }
