@@ -13,7 +13,7 @@
                 if ($this->menor == null || $produto->getValor() < $this->menor->getValor()) {
                     $this->menor = $produto;
                 }
-                else if ($this->maior == null || $produto->getValor() > $this->maior->getValor()) {
+                if ($this->maior == null || $produto->getValor() > $this->maior->getValor()) {
                     $this->maior = $produto;
                 }
             }
