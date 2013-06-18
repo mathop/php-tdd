@@ -18,9 +18,19 @@
         public function converte($numeroEmRomano)
         {
             $acumulador = 0;
+            $ultimoVizinhoDaDireita = 0;
 
-            for ($i = 0;  $i < strlen($numeroEmRomano); $i++) {
-                $acumulador += $this->tabela[$numeroEmRomano[$i]];
+            for ($i = strlen($numeroEmRomano) - 1; $i >= 0; $i--) {
+
+                $atual = $this->tabela[$numeroEmRomano[$i]];
+                $multiplicador = 1;
+
+                if ($atual < $ultimoVizinhoDaDireita) {
+                    $multiplicador = -1;
+                }
+
+                $acumulador += $this->tabela[$numeroEmRomano[$i]] * $multiplicador;
+                $ultimoVizinhoDaDireita = $atual;
             }
 
             return $acumulador;

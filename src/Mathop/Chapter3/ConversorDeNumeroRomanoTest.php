@@ -33,4 +33,11 @@
             $numero = $romano->converte('XXII');
             $this->assertEquals(22, $numero);
         }
+
+        public function testDeveEntenderNumerosComoIX()
+        {
+            $romano = new ConversorDeNumeroRomano();
+            $numero = $romano->converte('IX');
+            $this->assertEquals(9, $numero);
+        }
     }
