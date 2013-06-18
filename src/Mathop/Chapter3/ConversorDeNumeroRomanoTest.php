@@ -26,4 +26,11 @@
             $numero = $romano->converte('II');
             $this->assertEquals(2, $numero);
         }
+
+        public function testDeveEntenderQuatroSimbolosDoisADoisComoXXII()
+        {
+            $romano = new ConversorDeNumeroRomano();
+            $numero = $romano->converte('XXII');
+            $this->assertEquals(22, $numero);
+        }
     }
