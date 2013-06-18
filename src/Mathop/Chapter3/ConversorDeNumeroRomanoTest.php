@@ -1,5 +1,7 @@
 <?php
 
+    use Mathop\Chapter3\ConversorDeNumeroRomano;
+
     require_once('../../../vendor/autoload.php');
 
     class ConversorDeNumeroRomanoTest extends PHPUnit_Framework_TestCase
