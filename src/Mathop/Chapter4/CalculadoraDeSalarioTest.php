@@ -17,4 +17,14 @@
 
             $this->assertEquals(1500.0 * 0.9, $salario, 0.00001);
         }
+
+        public function testDeveCalcularSalarioParaDesenvolvedoresComSalarioAcimaDoLimite()
+        {
+            $calculadora = new CalculadoraDeSalario();
+            $desenvolvedor = new Funcionario('Maurício', 4000.0, Cargo::DESENVOLVEDOR);
+
+            $salario = $calculadora->calculaSalario($desenvolvedor);
+
+            $this->assertEquals(4000.0 * 0.8, $salario, 0.00001);
+        }
     }
