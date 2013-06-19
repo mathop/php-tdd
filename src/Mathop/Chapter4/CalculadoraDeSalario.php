@@ -6,10 +6,9 @@
     {
         public function calculaSalario(Funcionario $funcionario)
         {
-            if ($funcionario->getCargo() == Cargo::DESENVOLVEDOR) {
-                if ($funcionario->getSalario() > 3000) return 3200.0;
-                return 1350.0;
+            if ($funcionario->getSalario() > 3000) {
+                return $funcionario->getSalario() * 0.8;
             }
-            return 425.0;
+            return $funcionario->getSalario() * 0.9;
         }
     }
