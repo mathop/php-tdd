@@ -7,7 +7,18 @@
         public function encontra(CarrinhoDeCompras $carrinho)
         {
             $itens = $carrinho->getItens();
+
             if (count($itens) == 0) return 0;
-            return $itens[0]->getValorTotal();
+
+            $maior = $itens[0]->getValorTotal();
+
+            foreach ($itens as $item)
+            {
+                if ($maior < $item->getValorTotal()) {
+                    $maior = $item->getValorTotal();
+                }
+            }
+
+            return $maior;
         }
     }
