@@ -7,28 +7,31 @@
 
     class CarrinhoDeComprasTest extends PHPUnit_Framework_TestCase
     {
+        private $carrinho;
+
+        public function __construct()
+        {
+            $this->carrinho = new CarrinhoDeCompras();
+        }
+
         public function testDeveRetornarZeroSeCarrinhoVazio()
         {
-            $carrinho = new CarrinhoDeCompras();
-
-            $this->assertEquals(0.0, $carrinho->maiorValor(), '', 0.00001);
+            $this->assertEquals(0.0, $this->carrinho->maiorValor(), '', 0.00001);
         }
 
         public function testRetornarValorDoItemSeCarrinhoCom1Elemento()
         {
-            $carrinho = new CarrinhoDeCompras();
-            $carrinho->adiciona(new Item('Geladeira', 1, 900.0));
+            $this->carrinho->adiciona(new Item('Geladeira', 1, 900.0));
 
-            $this->assertEquals(900.0, $carrinho->maiorValor(), '', 0.00001);
+            $this->assertEquals(900.0, $this->carrinho->maiorValor(), '', 0.00001);
         }
 
         public function testDeveRetornarMaiorValorSeCarrinhoContemMuitosElementos()
         {
-            $carrinho = new CarrinhoDeCompras();
-            $carrinho->adiciona(new Item('Geladeira', 1, 900.0));
-            $carrinho->adiciona(new Item('Fogão', 1, 1500.0));
-            $carrinho->adiciona(new Item('Máquina de lavar', 1, 750.0));
+            $this->carrinho->adiciona(new Item('Geladeira', 1, 900.0));
+            $this->carrinho->adiciona(new Item('Fogão', 1, 1500.0));
+            $this->carrinho->adiciona(new Item('Máquina de lavar', 1, 750.0));
 
-            $this->assertEquals(1500.0, $carrinho->maiorValor(), '', 0.00001);
+            $this->assertEquals(1500.0, $this->carrinho->maiorValor(), '', 0.00001);
         }
     }
