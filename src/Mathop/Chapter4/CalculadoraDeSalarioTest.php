@@ -15,7 +15,7 @@
 
             $salario = $calculadora->calculaSalario($desenvolvedor);
 
-            $this->assertEquals(1500.0 * 0.9, $salario, 0.00001);
+            $this->assertEquals(1500.0 * 0.9, $salario, '', 0.00001);
         }
 
         public function testDeveCalcularSalarioParaDesenvolvedoresComSalarioAcimaDoLimite()
@@ -25,7 +25,7 @@
 
             $salario = $calculadora->calculaSalario($desenvolvedor);
 
-            $this->assertEquals(4000.0 * 0.8, $salario, 0.00001);
+            $this->assertEquals(4000.0 * 0.8, $salario, '', 0.00001);
         }
 
         public function testDeveCalcularSalarioParaDBAComSalarioAbaixoDoLimite()
@@ -35,6 +35,6 @@
 
             $salario = $calculadora->calculaSalario($desenvolvedor);
 
-            $this->assertEquals(500.0 * 0.85, $salario, 0.00001);
+            $this->assertEquals(500.0 * 0.85, $salario, '', 0.00001);
         }
     }
