@@ -2,13 +2,6 @@
 
     namespace Mathop\Chapter7;
 
-    class Cargo
-    {
-        const DESENVOLVEDOR = 1;
-        const DBA = 2;
-        const TESTADOR = 3;
-    }
-
     class Funcionario
     {
         private $nome;

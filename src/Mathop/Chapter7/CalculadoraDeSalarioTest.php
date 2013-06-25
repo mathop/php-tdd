@@ -11,7 +11,8 @@
         public function testDeveCalcularSalarioParaDesenvolvedoresComSalarioAbaixoDoLimite()
         {
             $calculadora = new CalculadoraDeSalario();
-            $desenvolvedor = new Funcionario('Matheus', 1500.0, Cargo::DESENVOLVEDOR);
+            $cargo = new Cargo();
+            $desenvolvedor = new Funcionario('Matheus', 1500.0, $cargo->desenvolvedor());
 
             $salario = $calculadora->calculaSalario($desenvolvedor);
 
@@ -21,7 +22,8 @@
         public function testDeveCalcularSalarioParaDesenvolvedoresComSalarioAcimaDoLimite()
         {
             $calculadora = new CalculadoraDeSalario();
-            $desenvolvedor = new Funcionario('Matheus', 4000.0, Cargo::DESENVOLVEDOR);
+            $cargo = new Cargo();
+            $desenvolvedor = new Funcionario('Matheus', 4000.0, $cargo->desenvolvedor());
 
             $salario = $calculadora->calculaSalario($desenvolvedor);
 
@@ -31,7 +33,8 @@
         public function testDeveCalcularSalarioParaDBAComSalarioAbaixoDoLimite()
         {
             $calculadora = new CalculadoraDeSalario();
-            $desenvolvedor = new Funcionario('Matheus', 500.0, Cargo::DBA);
+            $cargo = new Cargo();
+            $desenvolvedor = new Funcionario('Matheus', 500.0, $cargo->dba());
 
             $salario = $calculadora->calculaSalario($desenvolvedor);
 
@@ -41,7 +44,8 @@
         public function testDeveCalcularSalarioParaDBAComSalarioAcimaDoLimite()
         {
             $calculadora = new CalculadoraDeSalario();
-            $desenvolvedor = new Funcionario('Matheus', 4500.0, Cargo::DBA);
+            $cargo = new Cargo();
+            $desenvolvedor = new Funcionario('Matheus', 4500.0, $cargo->dba());
 
             $salario = $calculadora->calculaSalario($desenvolvedor);
 
@@ -51,7 +55,8 @@
         public function testDeveCalcularSalarioParaTestadorComSalarioAbaixoDoLimite()
         {
             $calculadora = new CalculadoraDeSalario();
-            $desenvolvedor = new Funcionario('Matheus', 500.0, Cargo::TESTADOR);
+            $cargo = new Cargo();
+            $desenvolvedor = new Funcionario('Matheus', 500.0, $cargo->testador());
 
             $salario = $calculadora->calculaSalario($desenvolvedor);
 
@@ -61,7 +66,8 @@
         public function testDeveCalcularSalarioParaTestadorComSalarioAcimaDoLimite()
         {
             $calculadora = new CalculadoraDeSalario();
-            $desenvolvedor = new Funcionario('Matheus', 4500.0, Cargo::TESTADOR);
+            $cargo = new Cargo();
+            $desenvolvedor = new Funcionario('Matheus', 4500.0, $cargo->testador());
 
             $salario = $calculadora->calculaSalario($desenvolvedor);
 
