@@ -47,4 +47,24 @@
 
             $this->assertEquals(4500.0 * 0.75, $salario, '', 0.00001);
         }
+
+        public function testDeveCalcularSalarioParaTestadorComSalarioAbaixoDoLimite()
+        {
+            $calculadora = new CalculadoraDeSalario();
+            $desenvolvedor = new Funcionario('Matheus', 500.0, Cargo::TESTADOR);
+
+            $salario = $calculadora->calculaSalario($desenvolvedor);
+
+            $this->assertEquals(500.0 * 0.85, $salario, '', 0.00001);
+        }
+
+        public function testDeveCalcularSalarioParaTestadorComSalarioAcimaDoLimite()
+        {
+            $calculadora = new CalculadoraDeSalario();
+            $desenvolvedor = new Funcionario('Matheus', 4500.0, Cargo::TESTADOR);
+
+            $salario = $calculadora->calculaSalario($desenvolvedor);
+
+            $this->assertEquals(4500.0 * 0.75, $salario, '', 0.00001);
+        }
     }

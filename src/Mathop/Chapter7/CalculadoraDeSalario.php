@@ -12,11 +12,13 @@
                 }
                 return $funcionario->getSalario() * 0.9;
             }
-            else if ($funcionario->getCargo() == Cargo::DBA) {
+            else if ($funcionario->getCargo() == Cargo::DBA || $funcionario->getCargo() == Cargo::TESTADOR) {
                 if ($funcionario->getSalario() < 2500) {
                     return $funcionario->getSalario() * 0.85;
                 }
                 return $funcionario->getSalario() * 0.75;
             }
+
+            throw new Exception('Funcionário inválido');
         }
     }
