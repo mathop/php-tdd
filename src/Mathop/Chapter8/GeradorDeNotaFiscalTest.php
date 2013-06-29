@@ -11,8 +11,12 @@
         public function testDeveGerarNFComValorDeImpostoDescontado()
         {
             $dao = $this->getMock('NFDao', array('persiste'));
+            $dao->expects($this->once())->method('persiste');
 
-            $gerador = new GeradorDeNotaFiscal($dao);
+            $sap = $this->getMock('SAP', array('envia'));
+            $sap->expects($this->once())->method('envia');
+
+            $gerador = new GeradorDeNotaFiscal($dao, $sap);
             $pedido = new Pedido('Matheus', 1000, 1);
 
             $nf = $gerador->gera($pedido);
@@ -23,11 +27,26 @@
         public function testDevePersistirNFGerada()
         {
             $dao = $this->getMock('NFDao', array('persiste'));
+            $dao->expects($this->once())->method('persiste');
 
-            $dao->expects($this->once())
-                ->method('persiste');
+            $sap = $this->getMock('SAP', array('envia'));
+            $sap->expects($this->once())->method('envia');
 
-            $gerador = new GeradorDeNotaFiscal($dao);
+            $gerador = new GeradorDeNotaFiscal($dao, $sap);
+            $pedido = new Pedido('Matheus', 1000, 1);
+
+            $nf = $gerador->gera($pedido);
+        }
+
+        public function testDeveEnviarNFGeradaParaSap()
+        {
+            $dao = $this->getMock('NFDao', array('persiste'));
+            $dao->expects($this->once())->method('persiste');
+
+            $sap = $this->getMock('SAP', array('envia'));
+            $sap->expects($this->once())->method('envia');
+
+            $gerador = new GeradorDeNotaFiscal($dao, $sap);
             $pedido = new Pedido('Matheus', 1000, 1);
 
             $nf = $gerador->gera($pedido);
