@@ -1,7 +1,6 @@
 <?php
 
     use Mathop\Chapter8\GeradorDeNotaFiscal;
-    use Mathop\Chapter8\NFDao;
     use Mathop\Chapter8\Pedido;
 
     require_once('../../../vendor/autoload.php');
@@ -10,13 +9,7 @@
     {
         public function testDeveGerarNFComValorDeImpostoDescontado()
         {
-            $dao = $this->getMock('NFDao', array('persiste'));
-            $dao->expects($this->once())->method('persiste');
-
-            $sap = $this->getMock('SAP', array('envia'));
-            $sap->expects($this->once())->method('envia');
-
-            $gerador = new GeradorDeNotaFiscal($dao, $sap);
+            $gerador = new GeradorDeNotaFiscal();
             $pedido = new Pedido('Matheus', 1000, 1);
 
             $nf = $gerador->gera($pedido);
@@ -24,29 +17,15 @@
             $this->assertEquals(1000 * 0.94, $nf->getValor(), 0.00001);
         }
 
-        public function testDevePersistirNFGerada()
+        public function testDeveInvocarAcoesPosteriores()
         {
-            $dao = $this->getMock('NFDao', array('persiste'));
-            $dao->expects($this->once())->method('persiste');
+            $acao1 = $this->getMock('Mathop\Chapter8\AcaoAposGerarNota', array('executa'));
+            $acao2 = $this->getMock('Mathop\Chapter8\AcaoAposGerarNota', array('executa'));
 
-            $sap = $this->getMock('SAP', array('envia'));
-            $sap->expects($this->once())->method('envia');
+            $acao1->expects($this->once())->method('executa');
+            $acao2->expects($this->once())->method('executa');
 
-            $gerador = new GeradorDeNotaFiscal($dao, $sap);
-            $pedido = new Pedido('Matheus', 1000, 1);
-
-            $nf = $gerador->gera($pedido);
-        }
-
-        public function testDeveEnviarNFGeradaParaSap()
-        {
-            $dao = $this->getMock('NFDao', array('persiste'));
-            $dao->expects($this->once())->method('persiste');
-
-            $sap = $this->getMock('SAP', array('envia'));
-            $sap->expects($this->once())->method('envia');
-
-            $gerador = new GeradorDeNotaFiscal($dao, $sap);
+            $gerador = new GeradorDeNotaFiscal(array($acao1, $acao2));
             $pedido = new Pedido('Matheus', 1000, 1);
 
             $nf = $gerador->gera($pedido);

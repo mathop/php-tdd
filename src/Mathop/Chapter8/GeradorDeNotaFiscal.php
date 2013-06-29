@@ -4,21 +4,35 @@
 
     class GeradorDeNotaFiscal
     {
-        private $dao;
-        private $sap;
+        private $acoes = array();
 
-        public function __construct(\NFDao $dao, \SAP $sap)
+        public function __construct($acoes = array())
         {
-            $this->dao = $dao;
-            $this->sap = $sap;
+            if (!is_array($acoes)) {
+                $acoes = array($acoes);
+            }
+
+            foreach ($acoes as $acao) {
+                if (is_a($acao, 'Mathop\Chapter8\AcaoAposGerarNota')) {
+                    $this->acoes[] = $acao;
+                }
+                else {
+                    throw new \InvalidArgumentException('"' . (is_object($acao) ? get_class($acao) : $acao) . '"' . ' não é um objeto válido de ação.');
+                }
+            }
         }
 
         public function gera(Pedido $pedido)
         {
-            $nf = new NotaFiscal($pedido->getCliente(), $pedido->getValorTotal() * 0.94, new \DateTime());
+            $nf = new NotaFiscal(
+                $pedido->getCliente(),
+                $pedido->getValorTotal() * 0.94,
+                new \DateTime()
+            );
 
-            $this->dao->persiste($nf);
-            $this->sap->envia($nf);
+            foreach ($this->acoes as $acao) {
+                $acao->executa($nf);
+            }
 
             return $nf;
         }

@@ -2,10 +2,10 @@
 
     namespace Mathop\Chapter8;
 
-    class NFDao
+    class NFDao implements AcaoAposGerarNota
     {
-        public function persiste(NotaFiscal $nf)
+        public function executa(NotaFiscal $nf)
         {
-
+            return true;
         }
     }

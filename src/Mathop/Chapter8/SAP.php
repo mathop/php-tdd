@@ -2,10 +2,10 @@
 
     namespace Mathop\Chapter8;
 
-    class SAP
+    class SAP implements AcaoAposGerarNota
     {
-        public function envia(NotaFiscal $nf)
+        public function executa(NotaFiscal $nf)
         {
-
+            return true;
         }
     }
