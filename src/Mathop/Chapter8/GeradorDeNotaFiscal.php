@@ -5,6 +5,7 @@
     class GeradorDeNotaFiscal
     {
         private $acoes = array();
+        private $relogio;
 
         public function __construct($acoes = array())
         {
@@ -20,6 +21,8 @@
                     throw new \InvalidArgumentException('"' . (is_object($acao) ? get_class($acao) : $acao) . '"' . ' não é um objeto válido de ação.');
                 }
             }
+
+            $this->relogio = new RelogioDoSistema();
         }
 
         public function gera(Pedido $pedido)
@@ -27,7 +30,7 @@
             $nf = new NotaFiscal(
                 $pedido->getCliente(),
                 $pedido->getValorTotal() * 0.94,
-                new \DateTime()
+                $this->relogio->hoje()
             );
 
             foreach ($this->acoes as $acao) {
