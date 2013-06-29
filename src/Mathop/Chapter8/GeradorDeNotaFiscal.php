@@ -6,11 +6,17 @@
     {
         private $acoes = array();
         private $relogio;
+        private $tabela;
 
-        public function __construct($acoes = array())
+        public function __construct($acoes = array(), Tabela $tabela)
         {
             if (!is_array($acoes)) {
-                $acoes = array($acoes);
+                if (empty($acoes)) {
+                    $acoes = array();
+                }
+                else {
+                    $acoes = array($acoes);
+                }
             }
 
             foreach ($acoes as $acao) {
@@ -22,6 +28,7 @@
                 }
             }
 
+            $this->tabela = $tabela;
             $this->relogio = new RelogioDoSistema();
         }
 
@@ -29,7 +36,7 @@
         {
             $nf = new NotaFiscal(
                 $pedido->getCliente(),
-                $pedido->getValorTotal() * 0.94,
+                $pedido->getValorTotal() * $this->tabela->paraValor($pedido->getValorTotal()),
                 $this->relogio->hoje()
             );
 
