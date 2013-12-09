@@ -37,8 +37,18 @@ class Fatura
 		return $this->pago;
 	}
 
-	public function setPago($pago)
+	public function adicionaPagamento(Pagamento $pagamento)
 	{
-		$this->pago = (bool) $pago;
+		$this->pagamentos->append($pagamento);
+
+		$valorTotal = 0;
+
+		foreach ($this->pagamentos as $p) {
+			$valorTotal += $p->getValor();
+		}
+
+		if ($valorTotal >= $this->valor) {
+			$this->pago = true;
+		}
 	}
 }
