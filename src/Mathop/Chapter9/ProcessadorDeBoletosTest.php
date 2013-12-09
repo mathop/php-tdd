@@ -37,4 +37,17 @@ class ProcessadorDeBoletosTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals(100.0, $fatura->getPagamentos()[0]->getValor());
 		$this->assertEquals(200.0, $fatura->getPagamentos()[1]->getValor());
 	}
+
+	public function testDeveMarcarFaturaComoPagaCasoBoletoUnicoPagueTudo()
+	{
+		$processador = new ProcessadorDeBoletos();
+
+		$fatura = new Fatura('Cliente', 150.0);
+		$b1 = new Boleto(150.0);
+		$boletos = new ArrayObject([$b1]);
+
+		$processador->processa($boletos, $fatura);
+
+		$this->assertTrue($fatura->isPago());
+	}
 }

@@ -7,12 +7,14 @@ class Fatura
 	private $cliente;
 	private $valor;
 	private $pagamentos;
+	private $pago;
 
 	public function __construct($cliente, $valor)
 	{
 		$this->cliente = $cliente;
 		$this->valor = $valor;
 		$this->pagamentos = new \ArrayObject();
+		$this->pago = false;
 	}
 
 	public function getCliente()
@@ -28,5 +30,15 @@ class Fatura
 	public function getPagamentos()
 	{
 		return $this->pagamentos;
+	}
+
+	public function isPago()
+	{
+		return $this->pago;
+	}
+
+	public function setPago($pago)
+	{
+		$this->pago = (bool) $pago;
 	}
 }
